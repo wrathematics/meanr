@@ -14,8 +14,6 @@ SEXP R_score(SEXP s_)
   char *s = NULL;
   const int len = LENGTH(s_);
   
-  fflush(stdout);
-  
   if (TYPEOF(s_) != STRSXP)
     error("input must be a vector of strings");
   
