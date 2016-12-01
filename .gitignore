@@ -1,0 +1,8 @@
+*.so
+*.o
+
+*~
+*.swp
+
+src/gperf/*.txt
+src/gperf/orig
