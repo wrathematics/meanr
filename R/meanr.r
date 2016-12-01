@@ -2,7 +2,7 @@
 #' 
 #' A popular technique in text analysis today is sentiment
 #' analysis, or trying to determine the overall emotional
-#' attitude of a piece of text (positive or negatie).
+#' attitude of a piece of text (positive or negative).
 #' We provide a new, basic implementation of a common
 #' method for computing sentiment, whereby words are scored
 #' as positive or negative according to a "dictionary", and
