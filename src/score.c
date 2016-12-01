@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include "RNACI.h"
 
 int get_sentiment_score(const char *word, const int wordlen);
