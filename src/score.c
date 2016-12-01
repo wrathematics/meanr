@@ -24,7 +24,9 @@ SEXP R_score(SEXP s_)
   
   for (int i=0; i<len; i++)
   {
-    // TODO check for C-c
+    if (i%256 == 0)
+      R_CheckUserInterrupt();
+    
     char *in = CHARPT(s_, i);
     size_t inlen = strlen(in);
     
