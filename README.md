@@ -47,7 +47,7 @@ sum(nchar(x))
 library(meanr)
 system.time(s <- score(x))
 ##  user  system elapsed 
-## 2.048   0.000   2.047 
+## 1.072   0.004   1.080 
 
 head(s)
 ##   positive negative        avg  wc
