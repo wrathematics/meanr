@@ -33,7 +33,7 @@ remotes::install_github("wrathematics/meanr")
 
 ## Example Usage
 
-I have a dataset that, for legal reasons, I can not describe, much less provide.  You can think of them like tweets (they are not tweets).  But take my word for it that it's real, English language text.  The data is in the form of a vector of strings, which we'll call `x`.
+I have a dataset that, for legal reasons, I can not describe, much less provide.  You can think of it like a collection of tweets (they are not tweets).  But take my word for it that it's real, English language text.  The data is in the form of a vector of strings, which we'll call `x`.
 
 ```r
 x = readRDS("x.rds")
