@@ -73,7 +73,7 @@ SEXP R_score(SEXP s_)
     int end;
     
     
-    for (int j=0; j<=inlen; j++)
+    for (int j=0; j<inlen; j++)
     {
       if (isspace(s[j]) || s[j] == '\0')
       {
