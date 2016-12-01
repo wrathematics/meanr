@@ -1,10 +1,9 @@
 #include "RNACI.h"
-#include "gperf/sentiment.h"
+
+int get_sentiment_score(const char *word, const int wordlen);
+
 
 #define CHARPT(x,i) ((char*)CHAR(STRING_ELT(x,i)))
-
-typedef struct sentwords sentwords_t;
-
 
 #define THROW_MEMERR() error("unable to allocate memory")
 #define CHECKMALLOC(s) if (s == NULL) THROW_MEMERR()
@@ -81,16 +80,12 @@ SEXP R_score(SEXP s_)
         end = j;
         s[end] = '\0'; // for gperf
         
-        sentwords_t *sw = in_word_set(s+start, end-start);
-        if (sw != NULL)
-        {
-          int score = sw->score;
-          *(sc) += score;
-          if (score > 0)
-            (*pos)++;
-          else
-            (*neg)++;
-        }
+        int score = get_sentiment_score(s+start, end-start);
+        *(sc) += score;
+        if (score > 0)
+          (*pos)++;
+        else if (score < 0)
+          (*neg)++;
         
         j++;
         while (isspace(s[j]))

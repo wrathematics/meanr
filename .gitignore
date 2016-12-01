@@ -6,4 +6,3 @@
 
 src/gperf/*.txt
 src/gperf/orig
-src/.clang_complete
