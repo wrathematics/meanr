@@ -6,6 +6,10 @@
 typedef struct sentwords sentwords_t;
 
 
+#define THROW_MEMERR() error("unable to allocate memory")
+#define CHECKMALLOC(s) if (s == NULL) THROW_MEMERR()
+
+
 SEXP R_score(SEXP s_)
 {
   SEXP ret, ret_names;
@@ -22,6 +26,10 @@ SEXP R_score(SEXP s_)
   newRvec(scores, len, "dbl");
   newRvec(nwords, len, "int");
   
+  // first guess
+  s = malloc(1024 * sizeof(*s));
+  CHECKMALLOC(s);
+  
   for (int i=0; i<len; i++)
   {
     if (i%256 == 0)
@@ -32,12 +40,15 @@ SEXP R_score(SEXP s_)
     
     if (inlen > slen)
     {
-      // TODO realloc
-      if (s) free(s);
-      s = malloc(inlen * sizeof(*s));
-      if (s == NULL)
-        error("unable to allocate memory");
+      void *realloc_ptr;
+      realloc_ptr = realloc(s, inlen * sizeof(*s));
+      if (realloc_ptr == NULL)
+      {
+        free(s);
+        THROW_MEMERR();
+      }
       
+      s = (char*)realloc_ptr;
       slen = inlen;
     }
     
