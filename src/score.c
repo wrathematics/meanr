@@ -7,8 +7,6 @@
 
 #define FIRSTSIZE 4096
 
-int get_sentiment_score(const char *word, const int wordlen);
-
 #define CHARPT(x,i) ((char*)CHAR(STRING_ELT(x,i)))
 #define THROW_MEMERR() error("unable to allocate memory")
 #define CHECKMALLOC(s) if (s == NULL) THROW_MEMERR()
@@ -23,6 +21,21 @@ static void check_interrupt_fun(void *ignored)
 static bool check_interrupt()
 {
   return (R_ToplevelExec(check_interrupt_fun, NULL) == FALSE);
+}
+
+
+#include <stdbool.h>
+
+bool is_pos_sentiment(const char *word, const int wordlen);
+bool is_neg_sentiment(const char *word, const int wordlen);
+
+static inline int get_sentiment_score(const char *word, const int wordlen)
+{
+  if (is_pos_sentiment(word, wordlen))
+    return 1;
+  else if (is_neg_sentiment(word, wordlen))
+    return -1;
+  else return 0;
 }
 
 
