@@ -5,6 +5,8 @@
 #include <R_ext/Utils.h>
 #include "RNACI.h"
 
+#define FIRSTSIZE 4096
+
 int get_sentiment_score(const char *word, const int wordlen);
 
 #define CHARPT(x,i) ((char*)CHAR(STRING_ELT(x,i)))
@@ -29,9 +31,9 @@ SEXP R_score(SEXP s_)
 {
   SEXP ret, ret_names;
   SEXP positive, negative, scores, nwords;
-  size_t slen = 0;
-  char *s = NULL;
   const int len = LENGTH(s_);
+  size_t slen = FIRSTSIZE;
+  char *s;
   
   if (TYPEOF(s_) != STRSXP)
     error("input must be a vector of strings");
@@ -40,6 +42,18 @@ SEXP R_score(SEXP s_)
   newRvec(negative, len, "int");
   newRvec(scores, len, "dbl");
   newRvec(nwords, len, "int");
+  
+  if (len == 1)
+  {
+    slen = 0;
+    s = NULL;
+  }
+  else
+  {
+    slen = FIRSTSIZE;
+    s = malloc(slen * sizeof(*s));
+  }
+  
   
   for (int i=0; i<len; i++)
   {
@@ -65,6 +79,7 @@ SEXP R_score(SEXP s_)
     
     
     memcpy(s, in, inlen*sizeof(*s));
+    
     for (int j=0; j<inlen; j++)
     {
       if (ispunct(s[j]))
