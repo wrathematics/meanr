@@ -4,4 +4,3 @@ warnings_are_errors: true
 env: 
   global:
     - CRAN: https://cran.rstudio.com
-

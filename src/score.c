@@ -35,7 +35,8 @@ static inline int get_sentiment_score(const char *word, const int wordlen)
     return 1;
   else if (is_neg_sentiment(word, wordlen))
     return -1;
-  else return 0;
+  else
+    return 0;
 }
 
 
