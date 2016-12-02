@@ -6,9 +6,9 @@
 * **Author:** Drew Schmidt
 
 
-**meanr** is an R package performing basic sentiment analysis.  Its main main method, `score()`, computes sentiment as a simple average.  More sophisticated techniques are available to R, for example in the **qdap** package's `polarity()` function.  The package uses [the Hu and Liu sentiment dictionary](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html), same as everybody else.
+**meanr** is an R package performing basic sentiment analysis.  Its main main method, `score()`, computes sentiment as a simple sum of the counts of positive (+1) and negative (-1) sentiment words in a piece of text.  More sophisticated techniques are available to R, for example in the **qdap** package's `polarity()` function.  This package uses [the Hu and Liu sentiment dictionary](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html), same as everybody else.
 
-**meanr** is significantly faster than everything else I tried (which was actually the motivation for its creation), but I don't claim to have tried everything.  There are also many opportunities for optimization in this implementation, but so far it's fast enough for my purposes that I'm not yet interested.
+**meanr** is significantly faster than everything else I tried (which was actually the motivation for its creation), but I don't claim to have tried everything.  There are also several opportunities for optimization in this implementation, but so far it's fast enough for my purposes that I'm not yet interested.
 
 
 
