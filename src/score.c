@@ -1,9 +1,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 #include <R_ext/Utils.h>
 #include "RNACI.h"
+
+#include "gperf/poshash.h"
+#include "gperf/neghash.h"
 
 #define FIRSTSIZE 4096
 
@@ -11,23 +15,17 @@
 #define THROW_MEMERR() error("unable to allocate memory")
 #define CHECKMALLOC(s) if (s == NULL) THROW_MEMERR()
 
-#include <stdbool.h>
 
-static void check_interrupt_fun(void *ignored)
+
+static inline bool is_pos_sentiment(const char *word, const int wordlen)
 {
-  R_CheckUserInterrupt();
+  return in_pos_set(word, wordlen) != NULL;
 }
 
-static bool check_interrupt()
+static inline bool is_neg_sentiment(const char *word, const int wordlen)
 {
-  return (R_ToplevelExec(check_interrupt_fun, NULL) == FALSE);
+  return in_neg_set(word, wordlen) != NULL;
 }
-
-
-#include <stdbool.h>
-
-bool is_pos_sentiment(const char *word, const int wordlen);
-bool is_neg_sentiment(const char *word, const int wordlen);
 
 static inline int get_sentiment_score(const char *word, const int wordlen)
 {
@@ -37,6 +35,18 @@ static inline int get_sentiment_score(const char *word, const int wordlen)
     return -1;
   else
     return 0;
+}
+
+
+
+static inline void check_interrupt_fun(void *ignored)
+{
+  R_CheckUserInterrupt();
+}
+
+static bool check_interrupt()
+{
+  return (R_ToplevelExec(check_interrupt_fun, NULL) == FALSE);
 }
 
 
@@ -103,10 +113,10 @@ SEXP R_score(SEXP s_)
     }
     
     
-    int *pos = &(INTEGER(positive)[i]);
-    int *neg = &(INTEGER(negative)[i]);
-    double *sc = &(REAL(scores)[i]);
-    int *nw = &(INTEGER(nwords)[i]);
+    int *pos = INTEGER(positive) + i;
+    int *neg = INTEGER(negative) + i;
+    double *sc = REAL(scores) + i;
+    int *nw = INTEGER(nwords) + i;
     *pos = *neg = *sc = *nw = 0;
     
     int start = 0;
@@ -135,13 +145,11 @@ SEXP R_score(SEXP s_)
         start = j;
       }
     }
-    
-    *sc /= *nw;
   }
   
   free(s);
   
-  ret_names = make_list_names(4, "positive", "negative", "avg", "wc");
+  ret_names = make_list_names(4, "positive", "negative", "score", "wc");
   ret = make_dataframe(RNULL, ret_names, 4, positive, negative, scores, nwords);
   
   R_END;

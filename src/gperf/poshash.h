@@ -31,11 +31,11 @@ error "gperf generated tables don't work with this execution character set. Plea
 
 #include <string.h>
 
-#define TOTAL_KEYWORDS 2003
-#define MIN_WORD_LENGTH 2
-#define MAX_WORD_LENGTH 20
-#define MIN_HASH_VALUE 84
-#define MAX_HASH_VALUE 37383
+#define POS_TOTAL_KEYWORDS 2003
+#define POS_MIN_WORD_LENGTH 2
+#define POS_MAX_WORD_LENGTH 20
+#define POS_MIN_HASH_VALUE 84
+#define POS_MAX_HASH_VALUE 37383
 /* maximum key range = 37300, duplicates = 0 */
 
 #ifdef __GNUC__
@@ -11027,11 +11027,11 @@ in_pos_set (str, len)
       (int)(long)&((struct stringpool_t *)0)->stringpool_str37383
     };
 
-  if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
+  if (len <= POS_MAX_WORD_LENGTH && len >= POS_MIN_WORD_LENGTH)
     {
       register int key = poshash (str, len);
 
-      if (key <= MAX_HASH_VALUE && key >= 0)
+      if (key <= POS_MAX_HASH_VALUE && key >= 0)
         {
           register int o = wordlist[key];
           if (o >= 0)
