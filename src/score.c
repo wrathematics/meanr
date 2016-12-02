@@ -46,7 +46,7 @@ SEXP R_score(SEXP s_)
   SEXP ret, ret_names;
   SEXP positive, negative, scores, nwords;
   const int len = LENGTH(s_);
-  size_t slen = FIRSTSIZE;
+  size_t slen;
   char *s;
   
   if (TYPEOF(s_) != STRSXP)
