@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+
+#include <R_ext/Utils.h>
 #include "RNACI.h"
 
 int get_sentiment_score(const char *word, const int wordlen);
@@ -8,6 +10,19 @@ int get_sentiment_score(const char *word, const int wordlen);
 #define CHARPT(x,i) ((char*)CHAR(STRING_ELT(x,i)))
 #define THROW_MEMERR() error("unable to allocate memory")
 #define CHECKMALLOC(s) if (s == NULL) THROW_MEMERR()
+
+#include <stdbool.h>
+
+static void check_interrupt_fun(void *ignored)
+{
+  R_CheckUserInterrupt();
+}
+
+static bool check_interrupt()
+{
+  return (R_ToplevelExec(check_interrupt_fun, NULL) == FALSE);
+}
+
 
 
 SEXP R_score(SEXP s_)
@@ -28,8 +43,14 @@ SEXP R_score(SEXP s_)
   
   for (int i=0; i<len; i++)
   {
-    if (i%256 == 0)
-      R_CheckUserInterrupt();
+    if (i%512 == 0)
+    {
+      if (check_interrupt())
+      {
+        free(s);
+        return R_NilValue;
+      }
+    }
     
     char *in = CHARPT(s_, i);
     size_t inlen = strlen(in) + 1;
