@@ -1,11 +1,11 @@
+#include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 #include "RNACI.h"
 
 int get_sentiment_score(const char *word, const int wordlen);
 
-
 #define CHARPT(x,i) ((char*)CHAR(STRING_ELT(x,i)))
-
 #define THROW_MEMERR() error("unable to allocate memory")
 #define CHECKMALLOC(s) if (s == NULL) THROW_MEMERR()
 
@@ -40,16 +40,10 @@ SEXP R_score(SEXP s_)
     
     if (inlen > slen)
     {
-      void *realloc_ptr;
-      realloc_ptr = realloc(s, inlen * sizeof(*s));
-      if (realloc_ptr == NULL)
-      {
-        free(s);
-        THROW_MEMERR();
-      }
-      
-      s = (char*)realloc_ptr;
       slen = inlen;
+      free(s);
+      s = malloc(slen * sizeof(*s));
+      CHECKMALLOC(s);
     }
     
     
