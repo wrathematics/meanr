@@ -3,6 +3,8 @@
 #include <ctype.h>
 #include "RNACI.h"
 
+#define FIRSTLEN 1024
+
 int get_sentiment_score(const char *word, const int wordlen);
 
 #define CHARPT(x,i) ((char*)CHAR(STRING_ELT(x,i)))
@@ -27,7 +29,7 @@ SEXP R_score(SEXP s_)
   newRvec(nwords, len, "int");
   
   // first guess
-  s = malloc(1024 * sizeof(*s));
+  s = malloc(FIRSTLEN * sizeof(*s));
   CHECKMALLOC(s);
   
   for (int i=0; i<len; i++)
@@ -36,7 +38,7 @@ SEXP R_score(SEXP s_)
       R_CheckUserInterrupt();
     
     char *in = CHARPT(s_, i);
-    size_t inlen = strlen(in);
+    size_t inlen = strlen(in) + 1;
     
     if (inlen > slen)
     {
