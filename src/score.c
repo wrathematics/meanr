@@ -59,12 +59,15 @@ static inline size_t max_strlen(SEXP s_, const int len)
 #ifdef OMP_VER_4
   #pragma omp parallel for simd schedule(static,1024) if(len>OMP_MIN_SIZE) reduction(max:maxlen)
 #else
-  #pragma omp parallel for schedule(static,1024) if(len>OMP_MIN_SIZE) reduction(max:maxlen)
+  #pragma omp parallel for schedule(static,1024) if(len>OMP_MIN_SIZE)
 #endif
   for (int i=0; i<len; i++)
   {
     char *s = CHARPT(s_, i);
     size_t tmp = strlen(s);
+    #ifndef OMP_VER_4
+    #pragma omp critical
+    #endif
     if (tmp > maxlen)
       maxlen = tmp;
   }
