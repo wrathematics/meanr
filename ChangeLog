@@ -1,2 +1,3 @@
 Release 0.1-0:
   * Added score().
+  * Added multi-corpus parallelism via OpenMP.
