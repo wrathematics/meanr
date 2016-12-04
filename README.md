@@ -8,7 +8,7 @@
 
 **meanr** is an R package performing basic sentiment analysis.  Its main main method, `score()`, computes sentiment as a simple sum of the counts of positive (+1) and negative (-1) sentiment words in a piece of text.  More sophisticated techniques are available to R, for example in the **qdap** package's `polarity()` function.  This package uses [the Hu and Liu sentiment dictionary](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html), same as everybody else.
 
-**meanr** is significantly faster than everything else I tried (which was actually the motivation for its creation), but I don't claim to have tried everything.  There are also several opportunities for optimization in this implementation, but so far it's fast enough for my purposes that I'm not yet interested.
+**meanr** is significantly faster than everything else I tried (which was actually the motivation for its creation), but I don't claim to have tried everything.  I believe the package is quite fast.  However, the method is merely a dictionary lookup, so it ignores word context like in more sophisticated methods.  On the other hand, the more sophisticated tools are very slow.  If you have a large volume of text, I believe there is value in getting a "first glance" at the data, and **meanr** allows you to do this very quickly.
 
 
 
@@ -47,7 +47,7 @@ sum(nchar(x))
 library(meanr)
 system.time(s <- score(x))
 ##  user  system elapsed 
-## 1.056   0.000   1.059 
+## 1.072   0.000   0.285 
 
 head(s)
 ##   positive negative score  wc
