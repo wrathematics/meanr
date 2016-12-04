@@ -64,7 +64,7 @@ static inline size_t max_strlen(SEXP s_, const int len)
   for (int i=0; i<len; i++)
   {
     char *s = CHARPT(s_, i);
-    size_t tmp = strlen(s);
+    size_t tmp = strlen(s) + 1;
     #ifndef OMP_VER_4
     #pragma omp critical
     #endif
