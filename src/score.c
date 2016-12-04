@@ -9,8 +9,6 @@
 #include "gperf/poshash.h"
 #include "gperf/neghash.h"
 
-#define FIRSTSIZE 4096
-
 #define CHARPT(x,i) ((char*)CHAR(STRING_ELT(x,i)))
 #define THROW_MEMERR() error("unable to allocate memory")
 #define CHECKMALLOC(s) if (s == NULL) THROW_MEMERR()
@@ -51,6 +49,22 @@ static bool check_interrupt()
 
 
 
+static inline size_t max_strlen(SEXP s_)
+{
+  size_t max = 0;
+  for (int i=0; i<LENGTH(s_); i++)
+  {
+    char *s = CHARPT(s_, i);
+    size_t tmp = strlen(s);
+    if (tmp > max)
+      max = tmp;
+  }
+  
+  return max;
+}
+
+
+
 SEXP R_score(SEXP s_)
 {
   SEXP ret, ret_names;
@@ -67,16 +81,9 @@ SEXP R_score(SEXP s_)
   newRvec(scores, len, "dbl");
   newRvec(nwords, len, "int");
   
-  if (len == 1)
-  {
-    slen = 0;
-    s = NULL;
-  }
-  else
-  {
-    slen = FIRSTSIZE;
-    s = malloc(slen * sizeof(*s));
-  }
+  slen = max_strlen(s_);
+  s = malloc(slen * sizeof(*s));
+  CHECKMALLOC(s);
   
   
   for (int i=0; i<len; i++)
@@ -92,15 +99,6 @@ SEXP R_score(SEXP s_)
     
     char *in = CHARPT(s_, i);
     size_t inlen = strlen(in) + 1;
-    
-    if (inlen > slen)
-    {
-      slen = inlen;
-      free(s);
-      s = malloc(slen * sizeof(*s));
-      CHECKMALLOC(s);
-    }
-    
     
     memcpy(s, in, inlen*sizeof(*s));
     
