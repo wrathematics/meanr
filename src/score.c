@@ -104,7 +104,7 @@ SEXP R_score(SEXP s_)
     // if (omp_get_thread_num() != 1)
     s = malloc(slen * sizeof(*s));
     
-    #pragma omp atomic update
+    #pragma omp atomic// update
     check += (s == NULL);
     
     
