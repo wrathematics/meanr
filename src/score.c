@@ -97,7 +97,7 @@ SEXP R_score(SEXP s_)
   
   int8_t check = 0;
   
-  #pragma omp parallel shared(check) if(len>OMP_MIN_SIZE)
+  #pragma omp parallel shared(check)
   {
     char *s = NULL;
     // NOTE uncomment to simulate oom failure
