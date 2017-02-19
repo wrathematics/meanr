@@ -1,8 +1,7 @@
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <stdbool.h>
 #include <stdint.h>
+#include <string.h>
+#include <ctype.h> // for ispunct()
 
 #include "include/RNACI.h"
 #include "include/safeomp.h"
@@ -13,7 +12,13 @@
 #define THROW_MEMERR() error("unable to allocate memory")
 #define CHECKMALLOC(s) if (s == NULL) THROW_MEMERR()
 
+#define FREE(ptr) if(ptr!=NULL) free(ptr)
 
+
+
+// ----------------------------------------------------------------------------
+// Hashtable interface
+// ----------------------------------------------------------------------------
 
 static inline bool is_pos_sentiment(const char *word, const int wordlen)
 {
@@ -36,6 +41,10 @@ static inline int8_t get_sentiment_score(const char *word, const int wordlen)
 }
 
 
+
+// ----------------------------------------------------------------------------
+// Finds the necessary size of the temporary storage
+// ----------------------------------------------------------------------------
 
 static inline size_t max_strlen(SEXP s_, const int len)
 {
@@ -61,8 +70,10 @@ static inline size_t max_strlen(SEXP s_, const int len)
 }
 
 
-int omp_get_thread_num(void);
 
+// ----------------------------------------------------------------------------
+// R interface
+// ----------------------------------------------------------------------------
 
 SEXP R_score(SEXP s_)
 {
@@ -89,10 +100,12 @@ SEXP R_score(SEXP s_)
     // if (omp_get_thread_num() != 1)
     s = malloc(slen * sizeof(*s));
     
+    // all threads tmp space malloc check
     #pragma omp atomic// update
     check += (s == NULL);
     
     
+    // malloc succeeded
     if (!check)
     {
       #pragma omp for
@@ -148,9 +161,10 @@ SEXP R_score(SEXP s_)
       }
     }
     
-    free(s);
+    FREE(s);
   }
   
+  // malloc failed
   if (check)
     THROW_MEMERR();
   
