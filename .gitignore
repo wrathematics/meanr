@@ -4,5 +4,4 @@
 *~
 *.swp
 
-src/gperf/*.txt
-src/gperf/orig
+src/hashtable/maker/
