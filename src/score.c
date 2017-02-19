@@ -40,18 +40,6 @@ static inline int8_t get_sentiment_score(const char *word, const int wordlen)
 
 
 
-static inline void check_interrupt_fun(void *ignored)
-{
-  R_CheckUserInterrupt();
-}
-
-static bool check_interrupt()
-{
-  return (R_ToplevelExec(check_interrupt_fun, NULL) == FALSE);
-}
-
-
-
 static inline size_t max_strlen(SEXP s_, const int len)
 {
   size_t maxlen = 0;
@@ -113,16 +101,6 @@ SEXP R_score(SEXP s_)
       #pragma omp for
       for (int i=0; i<len; i++)
       {
-        // TODO
-        // if (i%512 == 0)
-        // {
-        //   if (check_interrupt())
-        //   {
-        //     free(s);
-        //     return R_NilValue;
-        //   }
-        // }
-        
         char *in = CHARPT(s_, i);
         size_t inlen = strlen(in) + 1;
         
