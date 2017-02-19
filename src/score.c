@@ -4,10 +4,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include <R_ext/Utils.h>
-#include "RNACI.h"
-
-#include "safeomp.h"
+#include "include/RNACI.h"
+#include "include/safeomp.h"
 
 #include "gperf/poshash.h"
 #include "gperf/neghash.h"
