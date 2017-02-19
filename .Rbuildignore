@@ -1,7 +1,5 @@
 ^\.travis\.yml$
 
-src/gperf/orig
-src/gperf/*.sh
-src/gperf/*.txt
-
 src/.clang_complete
+
+src/hashtable/maker/

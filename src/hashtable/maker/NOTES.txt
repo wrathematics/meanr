@@ -1,0 +1,13 @@
+positive/negative words from http://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html
+
+
+Modifications before creating the hash table:
+
+* removed headers
+* pruned duplicates (all from positive.txt):
+    - envious
+    - enviously
+    - enviousness
+* remove mal-formed strings:
+    - naive (negative)
+    - a+ (positive)
