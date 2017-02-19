@@ -7,10 +7,9 @@
 #include "include/RNACI.h"
 #include "include/safeomp.h"
 
-#include "gperf/poshash.h"
-#include "gperf/neghash.h"
+#include "hashtable/poshash.h"
+#include "hashtable/neghash.h"
 
-#define CHARPT(x,i) ((char*)CHAR(STRING_ELT(x,i)))
 #define THROW_MEMERR() error("unable to allocate memory")
 #define CHECKMALLOC(s) if (s == NULL) THROW_MEMERR()
 
@@ -49,7 +48,7 @@ static inline size_t max_strlen(SEXP s_, const int len)
 #endif
   for (int i=0; i<len; i++)
   {
-    char *s = CHARPT(s_, i);
+    char *s = STR(s_, i);
     size_t tmp = strlen(s) + 1;
     #ifndef OMP_VER_4
     #pragma omp critical
@@ -99,7 +98,7 @@ SEXP R_score(SEXP s_)
       #pragma omp for
       for (int i=0; i<len; i++)
       {
-        char *in = CHARPT(s_, i);
+        char *in = STR(s_, i);
         size_t inlen = strlen(in) + 1;
         
         memcpy(s, in, inlen*sizeof(*s));
