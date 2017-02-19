@@ -71,7 +71,7 @@ SEXP R_score(SEXP s_)
   SEXP positive, negative, scores, nwords;
   const int len = LENGTH(s_);
   
-  if (TYPEOF(s_) != STRSXP)
+  if (TYPEOF(s_) != STRSXP || len == 0)
     error("input must be a vector of strings");
   
   newRvec(positive, len, "int");
