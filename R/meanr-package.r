@@ -10,7 +10,7 @@
 #' The package uses the Hu and Liu sentiment dictionary for
 #' assigning sentiment.
 #' 
-#' @useDynLib meanr, R_score
+#' @useDynLib meanr, R_score, R_meanr_nthreads
 #' 
 #' @name meanr-package
 #' @docType package

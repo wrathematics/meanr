@@ -5,9 +5,11 @@
   #include <R_ext/Rdynload.h>
   #include <stdlib.h>
 
+extern SEXP R_meanr_nthreads();
 extern SEXP R_score(SEXP s_);
 
 static const R_CallMethodDef CallEntries[] = {
+  {"R_meanr_nthreads", (DL_FUNC) &R_meanr_nthreads, 0},
   {"R_score", (DL_FUNC) &R_score, 1},
   {NULL, NULL, 0}
 };

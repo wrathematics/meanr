@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h> // for ispunct()
 
+#include "include/reactor.h"
 #include "include/RNACI.h"
 #include "include/safeomp.h"
 
@@ -48,16 +49,16 @@ static inline int8_t get_sentiment_score(const char *word, const int wordlen)
 
 #define SCHED_LEN 64
 
-static inline size_t max_strlen(SEXP s_, const int len)
+static inline size_t max_strlen(SEXP s_, const int len, const int nthreads)
 {
   size_t maxlen = 0;
   
   // NOTE the reduction clause is deliberately missing from omp versions < 4,
   // OpenMP didn't include max reductions before then.
 #ifdef OMP_VER_4
-  #pragma omp parallel for simd reduction(max:maxlen) schedule(static,SCHED_LEN) if(len>OMP_MIN_SIZE)
+  #pragma omp parallel for simd num_threads(nthreads) schedule(static,SCHED_LEN) if(len>OMP_MIN_SIZE) reduction(max:maxlen) 
 #else
-  #pragma omp parallel for schedule(static,SCHED_LEN) if(len>OMP_MIN_SIZE)
+  #pragma omp parallel for      num_threads(nthreads) schedule(static,SCHED_LEN) if(len>OMP_MIN_SIZE) // no reduction!
 #endif
   for (int i=0; i<len; i++)
   {
@@ -80,25 +81,27 @@ static inline size_t max_strlen(SEXP s_, const int len)
 // R interface
 // ----------------------------------------------------------------------------
 
-SEXP R_score(SEXP s_)
+SEXP R_score(SEXP s_, SEXP nthreads_)
 {
   SEXP ret, ret_names;
   SEXP positive, negative, scores, nwords;
-  const int len = LENGTH(s_);
   
-  if (TYPEOF(s_) != STRSXP || len == 0)
-    error("input must be a vector of strings");
+  CHECK_IS_STRINGS(s_, "s");
+  CHECK_IS_POSINT(nthreads_, "nthreads");
+  
+  const int len = LENGTH(s_);
+  const int nthreads = asInteger(nthreads_);
   
   newRvec(positive, len, "int");
   newRvec(negative, len, "int");
   newRvec(scores, len, "int");
   newRvec(nwords, len, "int");
   
-  const size_t slen = max_strlen(s_, len);
+  const size_t slen = max_strlen(s_, len, nthreads);
   
   int8_t check = 0;
   
-  #pragma omp parallel shared(check)
+  #pragma omp parallel shared(check) num_threads(nthreads)
   {
     char *s = NULL;
     // NOTE uncomment to simulate oom failure
