@@ -46,19 +46,24 @@ static inline int8_t get_sentiment_score(const char *word, const int wordlen)
 // Finds the necessary size of the temporary storage
 // ----------------------------------------------------------------------------
 
+#define SCHED_LEN 64
+
 static inline size_t max_strlen(SEXP s_, const int len)
 {
   size_t maxlen = 0;
   
+  // NOTE the reduction clause is deliberately missing from omp versions < 4,
+  // OpenMP didn't include max reductions before then.
 #ifdef OMP_VER_4
-  #pragma omp parallel for simd schedule(static,1024) if(len>OMP_MIN_SIZE) reduction(max:maxlen)
+  #pragma omp parallel for simd reduction(max:maxlen) schedule(static,SCHED_LEN) if(len>OMP_MIN_SIZE)
 #else
-  #pragma omp parallel for schedule(static,1024) if(len>OMP_MIN_SIZE)
+  #pragma omp parallel for schedule(static,SCHED_LEN) if(len>OMP_MIN_SIZE)
 #endif
   for (int i=0; i<len; i++)
   {
-    char *s = STR(s_, i);
+    const char *const s = STR(s_, i);
     size_t tmp = strlen(s) + 1;
+    
     #ifndef OMP_VER_4
     #pragma omp critical
     #endif
