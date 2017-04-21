@@ -122,22 +122,31 @@ SEXP R_score(SEXP s_, SEXP nthreads_)
         char *in = STR(s_, i);
         size_t inlen = strlen(in) + 1;
         
+        if (inlen == 1) // STR(s_, i) == ''
+        {
+          INTEGER(positive)[i] = NA_INTEGER;
+          INTEGER(negative)[i] = NA_INTEGER;
+          INTEGER(scores)[i] = NA_INTEGER;
+          INTEGER(nwords)[i] = NA_INTEGER;
+          continue;
+        }
+        
         memcpy(s, in, inlen*sizeof(*s));
         
         SAFE_SIMD
         for (int j=0; j<inlen; j++)
         {
           if (ispunct(s[j]))
-          s[j] = ' ';
+            s[j] = ' ';
           
           s[j] = tolower(s[j]);
         }
         
         
-        int *const pos = INTEGER(positive) + i;
-        int *const neg = INTEGER(negative) + i;
-        int *const sc = INTEGER(scores) + i;
-        int *const nw = INTEGER(nwords) + i;
+        int *const restrict pos = INTEGER(positive) + i;
+        int *const restrict neg = INTEGER(negative) + i;
+        int *const restrict sc = INTEGER(scores) + i;
+        int *const restrict nw = INTEGER(nwords) + i;
         *pos = *neg = *sc = *nw = 0;
         
         uint32_t start = 0;
@@ -155,13 +164,13 @@ SEXP R_score(SEXP s_, SEXP nthreads_)
             int8_t score = get_sentiment_score(s+start, end-start);
             *(sc) += score;
             if (score > 0)
-            (*pos)++;
+              (*pos)++;
             else if (score < 0)
-            (*neg)++;
+              (*neg)++;
             
             j++;
             while (isspace(s[j]))
-            j++;
+              j++;
             
             start = j;
           }
