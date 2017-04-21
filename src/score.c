@@ -124,10 +124,10 @@ SEXP R_score(SEXP s_, SEXP nthreads_)
         
         if (inlen == 1) // STR(s_, i) == ''
         {
-          INTEGER(positive)[i] = NA_INTEGER;
-          INTEGER(negative)[i] = NA_INTEGER;
-          INTEGER(scores)[i] = NA_INTEGER;
-          INTEGER(nwords)[i] = NA_INTEGER;
+          INTEGER(positive)[i] = 0;
+          INTEGER(negative)[i] = 0;
+          INTEGER(scores)[i] = 0;
+          INTEGER(nwords)[i] = 0;
           continue;
         }
         
