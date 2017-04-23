@@ -13,4 +13,3 @@ An integer; the number of threads.
 Returns the number of cores + hyperthreads on the system.  The function
 respects the environment variable \code{OMP_NUM_THREADS}.
 }
-
