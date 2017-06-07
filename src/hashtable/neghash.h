@@ -127,7 +127,7 @@ __inline
 __attribute__ ((__gnu_inline__))
 #endif
 #endif
-const char *
+static const char *
 in_neg_set (str, len)
      register const char *str;
      register unsigned int len;
