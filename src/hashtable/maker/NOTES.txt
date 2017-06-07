@@ -11,3 +11,9 @@ Modifications before creating the hash table:
 * remove mal-formed strings:
     - naive (negative)
     - a+ (positive)
+
+
+Modifications after creating the hash table:
+
+* set in_pos/neg_set static
+* use (intptr_t) instead of (int)(long)
