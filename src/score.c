@@ -134,7 +134,7 @@ SEXP R_score(SEXP s_, SEXP nthreads_)
         memcpy(s, in, inlen*sizeof(*s));
         
         SAFE_SIMD
-        for (int j=0; j<inlen; j++)
+        for (size_t j=0; j<inlen; j++)
         {
           if (ispunct(s[j]))
             s[j] = ' ';
