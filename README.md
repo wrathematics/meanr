@@ -1,6 +1,6 @@
 # meanr
 
-* **Version:** 0.1-0
+* **Version:** 0.1-1
 * **Status:** [![Build Status](https://travis-ci.org/wrathematics/meanr.png)](https://travis-ci.org/wrathematics/meanr)
 * **License:** [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause)
 * **Author:** Drew Schmidt
@@ -14,11 +14,11 @@
 
 ## Installation
 
-<!-- You can install the stable version from CRAN using the usual `install.packages()`:
+ You can install the stable version from CRAN using the usual `install.packages()`:
 
 ```r
 install.packages("meanr")
-``` -->
+``` 
 
 The development version is maintained on GitHub, and can easily be installed by any of the packages that offer installations from GitHub:
 
