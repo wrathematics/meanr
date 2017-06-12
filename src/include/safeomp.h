@@ -25,8 +25,8 @@
 //
 // For more information, please refer to http://unlicense.org/
 
-#ifndef __COOP_LIB_OMPUTILS_H__
-#define __COOP_LIB_OMPUTILS_H__
+#ifndef __SAFE_OMPUTILS_H__
+#define __SAFE_OMPUTILS_H__
 
 // -----------------------------------------------------------------------------
 // Non-OMP vectorization stuff
