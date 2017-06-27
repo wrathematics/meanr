@@ -185,8 +185,8 @@ SEXP R_score(SEXP s_, SEXP nthreads_)
   if (check)
     THROW_MEMERR();
   
-  ret_names = make_list_names(4, "positive", "negative", "score", "wc");
-  ret = make_dataframe(RNULL, ret_names, 4, positive, negative, scores, nwords);
+  make_list_names(ret_names, 4, "positive", "negative", "score", "wc");
+  make_dataframe(ret, RNULL, ret_names, 4, positive, negative, scores, nwords);
   
   R_END;
   return ret;
