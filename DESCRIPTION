@@ -1,14 +1,16 @@
 Package: meanr
 Type: Package
-Title: Basic Sentiment Analysis Scorer
+Title: Sentiment Analysis Scorer
 Version: 0.1-1
-Description: A popular technique in text analysis today is sentiment analysis, 
-    or trying to determine the overall emotional attitude of a piece of text
-    (positive or negative).  We provide a new, basic implementation of a common
-    method for computing sentiment, whereby words are scored as positive or
-    negative according to a "dictionary", and then an average of those scores
-    for the document is produced.  The package uses the 'Hu' and 'Liu' sentiment
-    dictionary for assigning sentiment.
+Description: Sentiment analysis is a popular technique in text mining.  Roughly
+    speaking, the technique is an attempt to determine the overall emotional
+    attitude of a piece of text (i.e., positive or negative).  We provide a new
+    implementation of a common method for computing sentiment, whereby words are
+    scored as positive or negative according to a "dictionary", and then an
+    sum of those scores for the document is produced.  We use the 'Hu' and 'Liu'
+    sentiment dictionary for determining sentiment.  The scoring function is
+    'vectorized' by document, and scores for multiple documents are computed in
+    parallel via 'OpenMP'.
 License: BSD 2-clause License + file LICENSE
 Depends:
     R (>= 3.0.0)
