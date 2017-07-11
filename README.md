@@ -3,10 +3,13 @@
 * **Version:** 0.1-1
 * **Status:** [![Build Status](https://travis-ci.org/wrathematics/meanr.png)](https://travis-ci.org/wrathematics/meanr)
 * **License:** [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause)
-* **Author:** Drew Schmidt
+* **Author:** Drew Schmidt (wrathematics .AT. gmail .DOT. com)
+* **Project home**: https://github.com/wrathematics/meanr
+* **Bug reports**: https://github.com/wrathematics/meanr/issues
 
 
-**meanr** is an R package performing basic sentiment analysis.  Its main main method, `score()`, computes sentiment as a simple sum of the counts of positive (+1) and negative (-1) sentiment words in a piece of text.  More sophisticated techniques are available to R, for example in the **qdap** package's `polarity()` function.  This package uses [the Hu and Liu sentiment dictionary](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html), same as everybody else.
+
+**meanr** is an R package performing sentiment analysis.  Its main main method, `score()`, computes sentiment as a simple sum of the counts of positive (+1) and negative (-1) sentiment words in a piece of text.  More sophisticated techniques are available to R, for example in the **qdap** package's `polarity()` function.  This package uses [the Hu and Liu sentiment dictionary](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html), same as everybody else.
 
 **meanr** is significantly faster than everything else I tried (which was actually the motivation for its creation), but I don't claim to have tried everything.  I believe the package is quite fast.  However, the method is merely a dictionary lookup, so it ignores word context like in more sophisticated methods.  On the other hand, the more sophisticated tools are very slow.  If you have a large volume of text, I believe there is value in getting a "first glance" at the data, and **meanr** allows you to do this very quickly.
 
