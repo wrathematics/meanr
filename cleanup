@@ -1,4 +1,5 @@
 #! /bin/sh
+
 rm -rf ./src/*.dylib
 rm -rf ./src/*.so*
 rm -rf ./src/*.o
