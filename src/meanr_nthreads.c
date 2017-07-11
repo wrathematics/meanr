@@ -1,5 +1,6 @@
 #include "include/RNACI.h"
 
+
 #ifdef _OPENMP
 int omp_get_num_threads();
 
@@ -13,6 +14,7 @@ static inline int num_threads()
   return nth;
 }
 #endif
+
 
 
 SEXP R_meanr_nthreads()

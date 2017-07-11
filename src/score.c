@@ -11,8 +11,6 @@
 #include "hashtable/neghash.h"
 
 #define THROW_MEMERR() error("unable to allocate memory")
-#define CHECKMALLOC(s) if (s == NULL) THROW_MEMERR()
-
 #define FREE(ptr) if(ptr!=NULL) free(ptr)
 
 
@@ -181,7 +179,7 @@ SEXP R_score(SEXP s_, SEXP nthreads_)
     FREE(s);
   }
   
-  // malloc failed
+  // malloc failed - should be outside of parallel region for proper error handling
   if (check)
     THROW_MEMERR();
   
