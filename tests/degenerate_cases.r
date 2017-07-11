@@ -1,6 +1,7 @@
 library(meanr)
 
-test = score("")
+# valgrind reports false positives, so set nthreads to 1
+test = score("", nthreads=1)
 truth = 
 data.frame(
   positive = 0L,
