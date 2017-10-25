@@ -19,3 +19,4 @@ parallel via 'OpenMP'.
 Drew Schmidt \email{wrathematics AT gmail.com}
 }
 \keyword{Package}
+

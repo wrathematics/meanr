@@ -3,9 +3,9 @@
 #include <string.h>
 #include <ctype.h> // for ispunct()
 
-#include "include/reactor.h"
-#include "include/RNACI.h"
-#include "include/safeomp.h"
+#include <reactor.h>
+#include <RNACI.h>
+#include <safeomp.h>
 
 #include "hashtable/poshash.h"
 #include "hashtable/neghash.h"
@@ -186,6 +186,6 @@ SEXP R_score(SEXP s_, SEXP nthreads_)
   make_list_names(ret_names, 4, "positive", "negative", "score", "wc");
   make_dataframe(ret, RNULL, ret_names, 4, positive, negative, scores, nwords);
   
-  R_END;
+  unhideGC();
   return ret;
 }

@@ -1,4 +1,4 @@
-#include "include/RNACI.h"
+#include <RNACI.h>
 
 
 #ifdef _OPENMP
@@ -28,6 +28,6 @@ SEXP R_meanr_nthreads()
   INT(nth) = 1;
 #endif
   
-  R_END;
+  unhideGC();
   return nth;
 }
