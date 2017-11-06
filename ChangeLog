@@ -1,6 +1,8 @@
 Release 0.1-1:
   * Fixed -Wextra compiler warnings.
   * Wrote a more coherent description.
+  * Support for older OpenMP standards (fixes Solaris compiler error).
+  * Fixed some edge-cases.
 
 Release 0.1-0:
   * Added score().
