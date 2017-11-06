@@ -3,7 +3,7 @@
 \docType{package}
 \name{meanr-package}
 \alias{meanr-package}
-\title{meanr: Basic Sentiment Analysis Scorer}
+\title{meanr: Sentiment Analysis Scorer}
 \description{
 Sentiment analysis is a popular technique in text mining.  Roughly
 speaking, the technique is an attempt to determine the overall emotional
