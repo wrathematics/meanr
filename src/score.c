@@ -47,7 +47,7 @@ static inline int8_t get_sentiment_score(const char *word, const int wordlen)
 
 #define SCHED_LEN 64
 
-static inline size_t max_strlen(SEXP s_, const int len, const int nthreads)
+static inline size_t max_strlen(SEXP s_, const int len, int nthreads)
 {
   size_t maxlen = 0;
   
@@ -88,7 +88,7 @@ SEXP R_score(SEXP s_, SEXP nthreads_)
   CHECK_IS_POSINT(nthreads_, "nthreads");
   
   const int len = LENGTH(s_);
-  const int nthreads = asInteger(nthreads_);
+  int nthreads = asInteger(nthreads_);
   
   newRvec(positive, len, "int");
   newRvec(negative, len, "int");
