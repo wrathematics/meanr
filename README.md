@@ -1,12 +1,10 @@
 # meanr
 
-* **Version:** 0.1-1
+* **Version:** 0.1-2
+* **URL**: https://github.com/wrathematics/meanr
 * **Status:** [![Build Status](https://travis-ci.org/wrathematics/meanr.png)](https://travis-ci.org/wrathematics/meanr)
 * **License:** [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause)
-* **Author:** Drew Schmidt (wrathematics .AT. gmail .DOT. com)
-* **Project home**: https://github.com/wrathematics/meanr
-* **Bug reports**: https://github.com/wrathematics/meanr/issues
-
+* **Author:** Drew Schmidt
 
 
 **meanr** is an R package performing sentiment analysis.  Its main method, `score()`, computes sentiment as a simple sum of the counts of positive (+1) and negative (-1) sentiment words in a piece of text.  More sophisticated techniques are available to R, for example in the **qdap** package's `polarity()` function.  This package uses [the Hu and Liu sentiment dictionary](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html), same as everybody else.
