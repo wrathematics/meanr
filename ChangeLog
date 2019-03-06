@@ -1,3 +1,8 @@
+Release 0.1-2:
+  * Configure test for OpenMP.
+  * Fix Solaris OMP issue.
+  * Use better nthreads lookup.
+
 Release 0.1-1:
   * Fixed -Wextra compiler warnings.
   * Wrote a more coherent description.
