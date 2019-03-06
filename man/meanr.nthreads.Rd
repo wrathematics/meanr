@@ -7,7 +7,7 @@
 meanr.nthreads()
 }
 \value{
-An integer; the number of threads.
+The number of cores + hyperthreads on the system (an integer).
 }
 \description{
 Returns the number of cores + hyperthreads on the system.  The function

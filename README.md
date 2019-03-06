@@ -15,18 +15,15 @@
 
 ## Installation
 
- You can install the stable version from CRAN using the usual `install.packages()`:
+The stable version is available on CRAN:
 
 ```r
 install.packages("meanr")
 ``` 
 
-The development version is maintained on GitHub, and can easily be installed by any of the packages that offer installations from GitHub:
+The development version is maintained on GitHub:
 
 ```r
-### Pick your preference
-devtools::install_github("wrathematics/meanr")
-ghit::install_github("wrathematics/meanr")
 remotes::install_github("wrathematics/meanr")
 ```
 

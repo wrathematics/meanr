@@ -20,15 +20,12 @@ sentiment words, and "wc" is the wordcount (total number of words).
 }
 \description{
 Computes the sentiment score, the sum of the total number of positive and
-negative scored words.  The scorer is vectorized so that it will return one
-row per input text, and each
+negative scored words. The function is vectorized so that it will return one
+row per string. The scoring function ignores (upper/lower) case and
+punctuation.
 }
 \details{
-Preprocessing is largely unnecessary.  For example, the scorer ignores
-case and punctuation.  That said, preprocessing probably won't hurt.
-
-
-The scorer uses OpenMP
+The scoring function uses OpenMP to process text in parallel.
 
 The function uses the Hu and Liu sentiment dictionary (same as everybody
 else) available here:
