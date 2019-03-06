@@ -27,7 +27,6 @@
 #' sentiment words, and "wc" is the wordcount (total number of words).
 #' 
 #' @examples
-#' \dontrun{
 #' library(meanr)
 #' s1 = "Abundance abundant accessable."
 #' s2 = "Banana apple orange."
@@ -35,11 +34,10 @@
 #' s = c(s1, s2, s3)
 #' 
 #' # as separate 'documents'
-#' score(s)
+#' score(s, nthreads=1)
 #' 
 #' # as one document
-#' score(paste0(s, collapse=" "))
-#' }
+#' score(paste0(s, collapse=" "), nthreads=1)
 #' 
 #' @references
 #' Hu, M., & Liu, B. (2004). Mining opinion features in customer
