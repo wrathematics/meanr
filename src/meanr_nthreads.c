@@ -1,21 +1,29 @@
 #include <RNACI.h>
 
+#define MIN(a,b) ((a)<(b)?(a):(b))
+
 #ifdef _OPENMP
 #include <omp.h>
 #endif
 
 static inline int num_threads()
 {
-  int nth;
+  int n = 0;
   
 #ifdef _OPENMP
+  int nth, tl;
   #pragma omp parallel
-  nth = omp_get_num_threads();
+  {
+    nth = omp_get_num_threads();
+    tl = omp_get_thread_limit();
+  }
+  
+  n = MIN(nth, tl);
 #else
-  nth = 1;
+  n = 1;
 #endif
   
-  return nth;
+  return n;
 }
 
 
