@@ -54,7 +54,3 @@ score(paste0(s, collapse=" "))
 Hu, M., & Liu, B. (2004). Mining opinion features in customer
 reviews. National Conference on Artificial Intelligence.
 }
-\seealso{
-\code{\link{meanr.nthreads}}
-}
-

@@ -10,8 +10,6 @@
 #' 'vectorized' by document, and scores for multiple documents are computed in
 #' parallel via 'OpenMP'.
 #' 
-#' @useDynLib meanr, R_score, R_meanr_nthreads
-#' 
 #' @name meanr-package
 #' @docType package
 #' @author Drew Schmidt \email{wrathematics AT gmail.com}

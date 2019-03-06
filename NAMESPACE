@@ -2,4 +2,5 @@
 
 export(meanr.nthreads)
 export(score)
-useDynLib(meanr, R_score, R_meanr_nthreads)
+useDynLib(meanr,R_meanr_nthreads)
+useDynLib(meanr,R_score)

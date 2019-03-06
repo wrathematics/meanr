@@ -6,8 +6,9 @@
 #' @return
 #' An integer; the number of threads.
 #' 
+#' @useDynLib meanr R_meanr_nthreads
 #' @export
-meanr.nthreads <- function()
+meanr.nthreads = function()
 {
   .Call(R_meanr_nthreads)
 }
