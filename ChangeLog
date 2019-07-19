@@ -1,4 +1,6 @@
 Release 0.1-2:
+  * Fixed build issue on Windows.
+  * Use latest RNACI.
   * Configure test for OpenMP.
   * Fixed Solaris OMP issue.
   * Use better nthreads lookup.
