@@ -1,5 +1,6 @@
 AC_PREREQ([2.69])
-AC_INIT(DESCRIPTION)
+AC_INIT
+AC_CONFIG_SRCDIR([DESCRIPTION])
 
 # Get C compiler from R
 : ${R_HOME=`R RHOME`}
@@ -29,4 +30,5 @@ echo "**************************************************************************
 echo " "
 
 AC_SUBST(OMP_FLAGS)
-AC_OUTPUT(src/Makevars)
+AC_CONFIG_FILES([src/Makevars])
+AC_OUTPUT
