@@ -1,10 +1,10 @@
-#include <RNACI.h>
-
-#define MIN(a,b) ((a)<(b)?(a):(b))
-
 #ifdef _OPENMP
 #include <omp.h>
 #endif
+
+#include <RNACI.h>
+
+#define MIN(a,b) ((a)<(b)?(a):(b))
 
 static inline int num_threads()
 {

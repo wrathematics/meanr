@@ -3,9 +3,9 @@
 #include <string.h>
 #include <ctype.h> // for ispunct()
 
+#include <safeomp.h>
 #include <reactor.h>
 #include <RNACI.h>
-#include <safeomp.h>
 
 #include "hashtable/poshash.h"
 #include "hashtable/neghash.h"
