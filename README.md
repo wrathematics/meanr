@@ -3,7 +3,7 @@
 * **Version:** 0.1-3
 * **URL**: https://github.com/wrathematics/meanr
 * **Status:** [![Build Status](https://travis-ci.org/wrathematics/meanr.png)](https://travis-ci.org/wrathematics/meanr)
-* **License:** [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause)
+* **License:** [BSD 2-Clause](https://opensource.org/licenses/BSD-2-Clause)
 * **Author:** Drew Schmidt
 
 
