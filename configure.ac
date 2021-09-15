@@ -10,7 +10,7 @@ if test -z "${R_HOME}"; then
 fi
 CC=`"${R_HOME}/bin/R" CMD config CC`
 
-AC_PROG_CC_C99
+AC_PROG_CC
 AC_OPENMP
 if test -n "${OPENMP_CFLAGS}"; then
   have_omp="yes"
