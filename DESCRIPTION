@@ -1,7 +1,7 @@
 Package: meanr
 Type: Package
 Title: Sentiment Analysis Scorer
-Version: 0.1-3
+Version: 0.1-4
 Description: Sentiment analysis is a popular technique in text mining that
     attempts to determine the emotional state of some text. We provide a new
     implementation of a common method for computing sentiment, whereby words are
@@ -21,4 +21,4 @@ Authors@R: c(person("Drew", "Schmidt", role=c("aut", "cre"),
 Maintainer: Drew Schmidt <wrathematics@gmail.com>
 URL: https://github.com/wrathematics/meanr
 BugReports: https://github.com/wrathematics/meanr/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.2
