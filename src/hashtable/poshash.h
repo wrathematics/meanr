@@ -48,9 +48,7 @@ inline
 #endif
 #endif
 static unsigned int
-poshash (str, len)
-     register const char *str;
-     register unsigned int len;
+poshash (register const char *str, register unsigned int len)
 {
   static const unsigned short asso_values[] =
     {
@@ -121,9 +119,7 @@ __attribute__ ((__gnu_inline__))
 #endif
 #endif
 static const char *
-in_pos_set (str, len)
-     register const char *str;
-     register unsigned int len;
+in_pos_set (register const char *str, register unsigned int len)
 {
   struct stringpool_t
     {

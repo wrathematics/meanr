@@ -5,7 +5,7 @@
 #include <R_ext/Rdynload.h>
 #include <stdlib.h>
 
-extern SEXP R_meanr_nthreads();
+extern SEXP R_meanr_nthreads(void);
 extern SEXP R_score(SEXP s_, SEXP nthreads_);
 
 static const R_CallMethodDef CallEntries[] = {

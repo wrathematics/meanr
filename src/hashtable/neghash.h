@@ -48,9 +48,7 @@ inline
 #endif
 #endif
 static unsigned int
-neghash (str, len)
-     register const char *str;
-     register unsigned int len;
+neghash (register const char *str, register unsigned int len)
 {
   static const unsigned int asso_values[] =
     {
@@ -128,9 +126,7 @@ __attribute__ ((__gnu_inline__))
 #endif
 #endif
 static const char *
-in_neg_set (str, len)
-     register const char *str;
-     register unsigned int len;
+in_neg_set (register const char *str, register unsigned int len)
 {
   struct stringpool_t
     {

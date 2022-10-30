@@ -1,6 +1,6 @@
 # meanr
 
-* **Version:** 0.1-4
+* **Version:** 0.1-5
 * **URL**: https://github.com/wrathematics/meanr
 * **License:** [BSD 2-Clause](https://opensource.org/licenses/BSD-2-Clause)
 * **Author:** Drew Schmidt
