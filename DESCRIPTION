@@ -1,7 +1,7 @@
 Package: meanr
 Type: Package
 Title: Sentiment Analysis Scorer
-Version: 0.1-5
+Version: 0.1-6
 Description: Sentiment analysis is a popular technique in text mining that
     attempts to determine the emotional state of some text. We provide a new
     implementation of a common method for computing sentiment, whereby words are

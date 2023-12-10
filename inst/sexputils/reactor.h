@@ -174,8 +174,8 @@ static inline int is_num(SEXP x)
 #define REACTOR_FIRST(...) REACTOR_FIRST_(__VA_ARGS__, 0)
 
 #define __REACTOR_ERRMSG(type_explanation, x, argname, ...) error("argument '%s' must be %s", argname, type_explanation);
-#define _REACTOR_ERRMSG(type_explanation, x, ...) __REACTOR_ERRMSG(type_explanation, __VA_ARGS__, #x, 0)
-#define REACTOR_ERRMSG(type_explanation, ...) _REACTOR_ERRMSG(type_explanation, __VA_ARGS__, 0)
+#define _REACTOR_ERRMSG(type_explanation, x, ...) __REACTOR_ERRMSG(type_explanation, __VA_ARGS__, #x, "")
+#define REACTOR_ERRMSG(type_explanation, ...) _REACTOR_ERRMSG(type_explanation, __VA_ARGS__, "")
 
 
 #endif
