@@ -1,8 +1,8 @@
 year <- sub("-.*", "", meta$Date)
 note <- sprintf("{R} package version %s", meta$Version)
 
-citEntry(
-  entry = "Misc",
+bibentry(
+  bibtype = "Misc",
   title = "{meanr}: Sentiment Analysis Scorer",
   author = person("Drew", "Schmidt"),
   year = year,
